@@ -25,6 +25,10 @@ def login():
 #New User First Time Register\signup.
 def register():
     new_user_name=(input("choose your user name:"))
+    user_data=load_file()
+    if new_user_name in user_data:
+        print("This Username already exist")
+        return
     new_user_password=(input("choose your Password:"))
     append_csv(new_user_name,new_user_password)
     
