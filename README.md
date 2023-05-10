@@ -16,10 +16,10 @@
 ### 1. *Python* - Programming language used to code the solution. Version 3.7.13 was used
 ### 2. *GitHub* - Reposotory for code deployment, version management and documentation of the presented solution
 ### 3. *Jupyter Labs* - IDE tool for coding, code testing/debugging and solution documentation. Version V3.4.4 was used
-### 4. *Git Bash console* - Local console used to test the coded solution and sync wiht GitHub Version 2.40.1.windows.1 was utilized for this challenge
+### 4. *Git Bash console* - Local console used to test the coded solution and sync with GitHub. Version 2.40.1.windows.1 was utilized for this challenge
 ### 5. *Slack* - Collaboration tool to communicate and brainstorm with other FinTech Bootcamp participants
 ### 6. *Operative System* - This solution was prepared in a PC running Windows 11 v H22
-### 7. *[OpenStreetMap](https://wiki.openstreetmap.org/wiki/Using_OpenStreetMap)* - OpenStreetMap (OSM) is a global collaborative (crowd-sourced) dataset and project that aims at creating a free editable map of the world containing a lot of information about our environment 1. It contains data for example about streets, buildings, different services, and landuse to mention a few. While no additional installation was required for the current challenge, we are using OSM to source the rendering of the San Francisco neighborhoods for the interactive map part of the challenge.
+### 7. *[OpenStreetMap](https://wiki.openstreetmap.org/wiki/Using_OpenStreetMap)* - OpenStreetMap (OSM) is a global collaborative (crowd-sourced) dataset and project that aims at creating a free editable map of the world containing a lot of information about our environment. It contains data for example about streets, buildings, different services, and landuse to mention a few. While no additional installation was required for the current challenge, we are using OSM to source the rendering of the San Francisco neighborhoods for the interactive map part of the challenge.
 ### 8. *[Bokeh](https://bokeh.org/)* - Bokeh is a Python library used to make interactive graphs and visualizations using HTML and JavaScript.
 ### 9. *[GeoViews](https://geoviews.org/)* -  GeoViews is a Python library that provides a high-level interface for working with geographical data and creating interactive visualizations.
 ### 10. x add remaining from proposal doc
@@ -38,11 +38,22 @@ pip install bokeh
 ```python 
 pip install geoviews
 ```
+### 3. *yfinance* - Install **[yfinance](https://pypi.org/project/yfinance/)** by executing the following steps:
+#### 3.1. Open the GitBash terminal
+#### 3.2 Type the following command and press Enter:
+```python 
+pip install yfinance
+```
+### 4. *yahoo_fin* - Install by following the following steps:
+#### 4.1. Open the GitBash terminal
+#### 4.2 Type the following command and press Enter:
+```python 
+pip install yahoo_fin
+```
 ---
-### 3. *Tech X* - Add remaining installation instructions needed
 ## **Solution Structure**
 
-### The **[P1_save_invest_prosper](https://github.com/LUTOV001/P1_Grow_Wise)** repository in GitHub contains the solution components. The repository consists of the following folders, subfolders and contents as described below:
+### The **[P1_Grow_Wise](https://github.com/LUTOV001/P1_Grow_Wise)** repository in GitHub contains the solution components. The repository consists of the following folders, subfolders and contents as described below:
  
 ###    1. Images : Includes the .png image files to illustrate the instructions in the Solution Jupyter Notebook. 
 ###    2. Resources : Includes the files with Real Estate data used for the analysis:
@@ -66,10 +77,10 @@ jupyter lab
 ### **Credits**
 
 #### Prepared by the FinTech Butlers:
-#####   Amira (add GitHub user)
-#####   Joe Knight (add GilHub user)
-#####   Matt G (add Github user)
-#####   Mike (add GitHub user)
-#####   Luis Torres (LUTOV001)
+#####   Malika Ajmera ([malika0410](https://github.com/malika0410))
+#####   Joe Knight ([yv-i](https://github.com/yv-i))
+#####   Matt G ([Slay1007](https://github.com/Slay1007))
+#####   Mike Nguyen ([mikenguyenx](https://github.com/mikenguyenx))
+#####   Luis Torres ([LUTOV001](https://github.com/LUTOV001))
 #### 
 ##### May 2023
