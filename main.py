@@ -2,6 +2,7 @@ import fire
 import sys
 # Import other functions created in the different file.
 from fileio.csvUtils import *
+from risk_questions import *
 
 #Check if the user is already registered or not
 def validate_user_login_info(username,password):
@@ -19,6 +20,7 @@ def login():
     password=input("Enter your Password:")
     if validate_user_login_info(username,password):
         print("login successful")
+        call_question()
     else:
         print("login unsuccessful")     
 
