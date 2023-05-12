@@ -1,5 +1,6 @@
 
 import questionary
+from Risk_Return_Analysis import *
 
 # Define the questions and list of answers with corresponding numbers
 questions = [
@@ -139,3 +140,13 @@ for answer in answers.values():
 
 # Print the total score
 print(f"Your risk score is: {risk_score}")
+if risk_score<=16:
+    print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
+    print(portfolio_recommandation(risk_score))
+elif risk_score >=17 and risk_score <32:
+    print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
+    print(portfolio_recommandation(risk_score))
+elif risk_score >=32:
+    print("Based on your above risk score your profile is Agressive. Below are the list of recommended stocks ")
+    print(portfolio_recommandation(risk_score))
+
