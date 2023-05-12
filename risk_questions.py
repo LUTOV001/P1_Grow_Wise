@@ -150,3 +150,34 @@ elif risk_score >=32:
     print("Based on your above risk score your profile is Agressive. Below are the list of recommended stocks ")
     print(portfolio_recommandation(risk_score))
 
+
+# Ask user how much money they want to invest
+# Verify the amount is an integer
+
+def is_number(value):
+    try:
+        float(value)
+        return True
+    except ValueError:
+        return False
+
+investment_amount = questionary.text(
+    "How much do you want to invest?",
+    validate=is_number
+).ask()
+
+print("You would like to invest: $", investment_amount)
+
+
+# Maps the summed value of the responses to one of the five investor risk profiles (CHANGE to THREE)
+risk_defined = {
+    45: "Aggressive",
+    25: "Moderate",
+    5: "Conservative",
+}
+
+# Returns the Investor Risk Profile
+def risk_mapping(risk_score):
+    for key, risk_profile in risk_defined.items():
+        if risk_score >= key:
+            return risk_profile
