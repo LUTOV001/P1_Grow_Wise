@@ -3,7 +3,12 @@ import questionary
 from Risk_Return_Analysis import *
 
 # Define the questions and list of answers with corresponding numbers
-questions = [
+
+
+
+# Use questionary to prompt the user for their answers
+def call_question():
+    questions = [
     {
         "type": "select",
         "name": "investment_objective",
@@ -124,31 +129,28 @@ questions = [
             {"name":"Very high (Significantly above market returns)", "value": 5}
         ]
     },
-]
-
-
-# Use questionary to prompt the user for their answers
-answers = questionary.prompt(questions)
+    ]
+    answers = questionary.prompt(questions)
 
 # Sum the values of the user's responses
-risk_score = 0
-for answer in answers.values():
-    if isinstance(answer, int):
-        risk_score += answer
-    else:
-        risk_score += answer.get("value")
+    risk_score = 0
+    for answer in answers.values():
+        if isinstance(answer, int):
+            risk_score += answer
+        else:
+            risk_score += answer.get("value")
 
-# Print the total score
-print(f"Your risk score is: {risk_score}")
-if risk_score<=16:
-    print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
-    print(portfolio_recommandation(risk_score))
-elif risk_score >=17 and risk_score <32:
-    print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
-    print(portfolio_recommandation(risk_score))
-elif risk_score >=32:
-    print("Based on your above risk score your profile is Agressive. Below are the list of recommended stocks ")
-    print(portfolio_recommandation(risk_score))
+    # Print the total score
+    print(f"Your risk score is: {risk_score}")
+    if risk_score<=16:
+        print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
+        print(portfolio_recommandation(risk_score))
+    elif risk_score >=17 and risk_score <32:
+        print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
+        print(portfolio_recommandation(risk_score))
+    elif risk_score >=32:
+        print("Based on your above risk score your profile is Agressive. Below are the list of recommended stocks ")
+        print(portfolio_recommandation(risk_score))
 
 
 # Ask user how much money they want to invest
@@ -160,7 +162,7 @@ def is_number(value):
         return True
     except ValueError:
         return False
-
+""""
 investment_amount = questionary.text(
     "How much do you want to invest?",
     validate=is_number
@@ -175,7 +177,7 @@ risk_defined = {
     25: "Moderate",
     5: "Conservative",
 }
-
+"""
 # Returns the Investor Risk Profile
 def risk_mapping(risk_score):
     for key, risk_profile in risk_defined.items():
