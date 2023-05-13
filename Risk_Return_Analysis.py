@@ -12,6 +12,7 @@ import warnings
 warnings.filterwarnings('ignore')
 from Resources.ticker_list import ticker_list
 from utilities.grab_current_date import *
+# from data_pull import *
 
 
 
@@ -24,20 +25,13 @@ from utilities.grab_current_date import *
 
 # tickers=['AAPL', 'ADBE', 'AFRM', 'AMD', 'AMZN', 'BABA', 'BIDU', 'COIN', 'COUR', 'CRM', 'CRWD', 'CSCO', 'DBX', 'DDOG', 'DOCU', 'FSLY', 'GOOGL', 'IBM', 'INTC', 'JD', 'LYFT', 'MDB', 'META', 'MSFT', 'NET', 'NFLX', 'NOW', 'NVDA', 'OKTA', 'ORCL', 'PATH', 'PLTR', 'PYPL', 'RBLX', 'SHOP', 'SNAP', 'SNOW', 'SPOT', 'SQ', 'TCEHY', 'TEAM', 'TSLA', 'TSM', 'TWLO', 'U', 'UBER', 'WDAY', 'ZI', 'ZM', 'ZS']
 tickers = ticker_list()
-# In[4]:
 
-
-# S&P500 data pulled from yfinance.
+#S&P500 data pulled from yfinance.
 print('***Pulling S&P Data***')
-data_spy = yf.download("SPY",start='2013-01-01', end=today_date(), progress=False)
-#print(data_spy)
-
-
-# In[5]:
-
+data_spy = yf.download("SPY",start='2013-01-01', end=today_date())
+# print(data_spy)
 
 #Calculate the daily return for S&P500 on adjusted closing price by using percentage change.
-
 daily_returns_SPY500={}
 daily_returns_SPY500 = data_spy['Adj Close'].pct_change().dropna()
 #print(daily_returns_SPY500)
@@ -85,10 +79,7 @@ annualized_average_return_SPY500=daily_returns_SPY500.mean()*trading_Days
 #annualized_average_return.sort_values(ascending=False)
 
 
-# In[10]:
-
-
-# Calculate the annualized Sharpe Ratios for S&P500.
+# Calculates Shape Ratio
 risk_free_rate=0
 annualized_sharpe_SPY500 = annualized_average_return_SPY500 / annualized_standard_deviation_SPY500
 # annualized_sharpe_SPY500
@@ -101,7 +92,7 @@ annualized_sharpe_SPY500 = annualized_average_return_SPY500 / annualized_standar
 daily_returns={}
 print('***Calculating Daily returns of all 50 stocks***') # Cleans the data by dropping nan
 for ticker in tickers:
-    data = yf.download(ticker,start='2013-01-01', end=today_date(), progress=False)
+    data = yf.download(ticker,start='2013-01-01', end=today_date())
     daily_return =data['Adj Close'].pct_change().dropna()
     daily_returns[ticker]=daily_return
     #print(daily_returns)

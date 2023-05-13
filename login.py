@@ -19,7 +19,7 @@ def login():
     password=input("Enter your Password:")
     if validate_user_login_info(username,password):
         print("login successful")
-        call_question()
+        call_question() # in risk_questions.py
     else:
         print("login unsuccessful")
         sys.exit()  

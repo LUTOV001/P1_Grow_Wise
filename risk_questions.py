@@ -149,19 +149,20 @@ def your_risk_score(risk_score):
         print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
         low_risk_port_rec = portfolio_recommandation(risk_score)
         print(low_risk_port_rec)
-        return(low_risk_port_rec)
+        return(risk_score)
 
 
     elif risk_score >=17 and risk_score <32:
         print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
         moderate_risk_port_rec = portfolio_recommandation(risk_score)
         print(moderate_risk_port_rec)
-        
+        return(risk_score)
 
     elif risk_score >=32:
         print("Based on your above risk score your profile is Aggressive. Below are the list of recommended stocks ")
         high_risk_port_rec = portfolio_recommandation(risk_score)
         print(high_risk_port_rec)
+        return(risk_score)
 
     
     #MOVED to prints_beta_core_sharpe.py
