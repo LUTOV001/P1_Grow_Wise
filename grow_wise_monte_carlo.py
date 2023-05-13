@@ -21,8 +21,8 @@ from utilities.grab_current_date import *
 # define investment amount
 investment_amount = 100000
 #List of 50 stocks/tickers
-tickers=['AAPL', 'ADBE', 'AFRM', 'AMD', 'AMZN', 'BABA', 'BIDU', 'COIN', 'COUR', 'CRM', 'CRWD', 'CSCO', 'DBX', 'DDOG', 'DOCU', 'FSLY', 'GOOGL', 'IBM', 'INTC', 'JD', 'LYFT', 'MDB', 'META', 'MSFT', 'NET', 'NFLX', 'NOW', 'NVDA', 'OKTA', 'ORCL', 'PATH', 'PLTR', 'PYPL', 'RBLX', 'SHOP', 'SNAP', 'SNOW', 'SPOT', 'SQ', 'TCEHY', 'TEAM', 'TSLA', 'TSM', 'TWLO', 'U', 'UBER', 'WDAY', 'ZI', 'ZM', 'ZS']
-# tickers = ticker_list()
+# tickers=['AAPL', 'ADBE', 'AFRM', 'AMD', 'AMZN', 'BABA', 'BIDU', 'COIN', 'COUR', 'CRM', 'CRWD', 'CSCO', 'DBX', 'DDOG', 'DOCU', 'FSLY', 'GOOGL', 'IBM', 'INTC', 'JD', 'LYFT', 'MDB', 'META', 'MSFT', 'NET', 'NFLX', 'NOW', 'NVDA', 'OKTA', 'ORCL', 'PATH', 'PLTR', 'PYPL', 'RBLX', 'SHOP', 'SNAP', 'SNOW', 'SPOT', 'SQ', 'TCEHY', 'TEAM', 'TSLA', 'TSM', 'TWLO', 'U', 'UBER', 'WDAY', 'ZI', 'ZM', 'ZS']
+tickers = ticker_list()
 
 # In[4]:
 

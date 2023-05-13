@@ -3,7 +3,7 @@
 import pandas as pd                     
 import numpy as np
 import seaborn as sns
-import datetime as dt
+# import datetime as dt
 import matplotlib.pyplot as plt
 from MCForecastTools import MCSimulation
 import yfinance as yf
@@ -16,6 +16,7 @@ from utilities.grab_current_date import *
 
 
 
+
 # In[3]:
 
 
@@ -23,7 +24,6 @@ from utilities.grab_current_date import *
 
 # tickers=['AAPL', 'ADBE', 'AFRM', 'AMD', 'AMZN', 'BABA', 'BIDU', 'COIN', 'COUR', 'CRM', 'CRWD', 'CSCO', 'DBX', 'DDOG', 'DOCU', 'FSLY', 'GOOGL', 'IBM', 'INTC', 'JD', 'LYFT', 'MDB', 'META', 'MSFT', 'NET', 'NFLX', 'NOW', 'NVDA', 'OKTA', 'ORCL', 'PATH', 'PLTR', 'PYPL', 'RBLX', 'SHOP', 'SNAP', 'SNOW', 'SPOT', 'SQ', 'TCEHY', 'TEAM', 'TSLA', 'TSM', 'TWLO', 'U', 'UBER', 'WDAY', 'ZI', 'ZM', 'ZS']
 tickers = ticker_list()
-
 # In[4]:
 
 
@@ -39,7 +39,7 @@ data_spy = yf.download("SPY",start='2013-01-01', end=today_date(), progress=Fals
 #Calculate the daily return for S&P500 on adjusted closing price by using percentage change.
 
 daily_returns_SPY500={}
-daily_returns_SPY500 =data_spy['Adj Close'].pct_change().dropna()
+daily_returns_SPY500 = data_spy['Adj Close'].pct_change().dropna()
 #print(daily_returns_SPY500)
 daily_returns_SPY500.name='Adj Close'
 
@@ -407,7 +407,7 @@ df_final_sorted_by_Correlation=df_final.sort_values(by=['Correlation'],ascending
 
 # ranking them in descending order of Correlation.
 df_final_sorted_by_Correlation['Rank'] = df_final_sorted_by_Correlation['Correlation'].rank(ascending=False) 
-# print(df_final_sorted_by_Correlation.head(10)) ### DEBUG
+# print(df_final_sorted_by_Correlation.head(10)) #DEBUG
 
 
 # In[31]:

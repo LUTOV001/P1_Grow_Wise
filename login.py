@@ -19,10 +19,14 @@ def login():
     password=input("Enter your Password:")
     if validate_user_login_info(username,password):
         print("login successful")
-        call_question() # in risk_questions
+        call_question()
     else:
         print("login unsuccessful")
-        login()     
+        sys.exit()  
+
+# def run_question_from_login():
+#     if login_func() == True:
+#         call_question() # in risk_questions   
 
 #New User First Time Register\signup.
 def register():

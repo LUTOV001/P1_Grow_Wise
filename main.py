@@ -1,5 +1,5 @@
 import fire
-from login import *
+from login import run
 
 #First main funtion will run.
 if __name__ == "__main__":
