@@ -6,9 +6,9 @@
 ###  The GrowWise tool offers an easy accessible and affordable way for users, regardless of their income and investment experience, to invest their money efficiently, without requiring prior extensive knowledge of the markets or expertise in investing strategies. Depending on their goals (e.g. target funds over time)  and risk tolerance, # solution uses cutting-edge technology paired with algorithms to create personalized, tailored Investment options for individuals in a clear and easy manner.
 
 ### ***Part I.- Login*** - New users have the ability to create their login credentials and existing users have the ability to login to the tool using their existing user and password
-### ***Part II. Investor Profiling*** The user has the abilty to create their investor profile based on their own risk preferences and financial targets by answering the questions provided b the tool
-### ***Part III. EFT preparation*** The system gathers stock information (the MVP focuses on Tech stocks, given that they have proven to be the most resilient in the current economic situation) to prepare an EFT based on the user's investor profile (e.g. conservative, medium conservative, medium, agressive, medium agressive) and the list of individual stocks included in the EFT
-### ***Part IV. Recommendation presentment and simulation***  Using Monte Carlo simulation, the system prepares a forecast for a theoretical initial investment (e.g. $10,000) over a period of time (e.g. 5 years) and the probebilty of the outcome (expressed in %), based on the Investor profile
+### ***Part II. Investor Profiling*** - The user has the abilty to create their investor profile based on their own risk preferences and financial targets by answering the questions provided b the tool
+### ***Part III. EFT preparation*** - The system gathers stock information to prepare an EFT based on the user's investor profile (e.g. conservative, medium conservative, medium, agressive, medium agressive) and the list of individual stocks included in the EFT. ***(NOTE: the present MVP focuses on Tech stocks, given that they have proven to be the most resilient in the current economic situation)***
+### ***Part IV. Recommendation presentment and simulation*** - Using Monte Carlo simulation, the system prepares a forecast for a theoretical initial investment (e.g. $10,000) over a period of time (e.g. 5 years) and the probebilty of the outcome (expressed in %), based on the Investor profile
 ---
 ## **Technologies and Tools**
 
@@ -69,7 +69,8 @@ pip install questionary
 ### 1. Launch the GitBash terminal
 ### 2. From the GitBash terminal, navigate to the folder where the GitHub respository has been cloned (e.g. OneDrive/Desktop/FinTechspace/github)
 ### 3. Execute/Run the main,py program by typing:
-```python main.py
+```
+python main.py
 ```
 #### 4. Answer log in questions and provide user name and password to access the tool. If new user, provide user name and password
 #### 5. Wait for the program to load the EFTs and their stocks
