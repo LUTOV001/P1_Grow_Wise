@@ -11,6 +11,7 @@ import numpy as np
 import seaborn as sns
 import datetime as dt
 import matplotlib.pyplot as plt
+from MCForecastTools import MCSimulation
 import yfinance as yf
 from yahoo_fin.stock_info import get_data
 import warnings
@@ -446,10 +447,51 @@ def portfolio_recommandation(risk_score):
         for item in df_final_sorted_by_beta['Ticker'].head().tolist():
             final_portfolio_recommend_list.append(item)
     return final_portfolio_recommend_list
-  
-    
-  
 
+def get_beta_data():
+    high_beta=[]
+    med_beta=[]
+    low_beta=[]
+
+   #Assigning ranked beta data in a list.
+    high_beta=df_final_sorted_by_beta['Ticker'].iloc[0:16].tolist() 
+    med_beta=df_final_sorted_by_beta['Ticker'].iloc[16:32].tolist() 
+    low_beta=df_final_sorted_by_beta['Ticker'].iloc[32:51].tolist() 
+    print(high_beta) 
+    print(med_beta) 
+    print(low_beta)      
+    
+    return high_beta,med_beta,low_beta
+
+def get_correlation_data():
+    highly_correlated=[]
+    med_correlated=[]
+    low_correlated=[]
+
+    #Assigning ranked correlated data in a list.
+    highly_correlated=df_final_sorted_by_Correlation['Ticker'].iloc[0:16].tolist() 
+    med_correlated=df_final_sorted_by_Correlation['Ticker'].iloc[16:32].tolist() 
+    low_correlated=df_final_sorted_by_Correlation['Ticker'].iloc[32:51].tolist() 
+    print(highly_correlated) 
+    print(med_correlated) 
+    print(low_correlated)      
+    
+    return highly_correlated,med_correlated,low_correlated
+
+def get_sharpe_data():
+    high_sharpe=[]
+    med_sharpe=[]
+    low_sharpe=[]
+
+   #Assigning ranked sharpe return data in a list.
+    high_sharpe=sharpe_ratio_df['Ticker'].iloc[0:16].tolist() 
+    med_sharpe=sharpe_ratio_df['Ticker'].iloc[16:32].tolist() 
+    low_sharpe=sharpe_ratio_df['Ticker'].iloc[32:51].tolist() 
+    print(high_sharpe) 
+    print(med_sharpe) 
+    print(low_sharpe)      
+    
+    return high_sharpe,med_sharpe,low_sharpe
 
 
 # In[ ]:

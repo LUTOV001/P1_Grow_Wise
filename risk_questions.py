@@ -1,6 +1,8 @@
 
 import questionary
+#Importing other modular programming files to create link between codes.
 from Risk_Return_Analysis import *
+from grow_wise_monte_carlo import *   
 
 # Define the questions and list of answers with corresponding numbers
 
@@ -142,6 +144,8 @@ def call_question():
 
     # Print the total score
     print(f"Your risk score is: {risk_score}")
+
+    #Diversifying portfolio on the basis of risk score
     if risk_score<=16:
         print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
         print(portfolio_recommandation(risk_score))
@@ -151,6 +155,24 @@ def call_question():
     elif risk_score >=32:
         print("Based on your above risk score your profile is Agressive. Below are the list of recommended stocks ")
         print(portfolio_recommandation(risk_score))
+
+
+    print("Below is the list of high beta,medium beta and low beta stocks recommendation")
+    #check the risk_return_analysis file to get (get_beta_data)
+    high_beta,med_beta,low_beta=get_beta_data()
+    beta_return(high_beta,med_beta,low_beta)
+
+    print("Below is the list of highly correlated,medium correlated and low correlated stocks recommendation")
+    #check the risk_return_analysis file to get (get_correlation_data)
+    high_correlation_tickers,med_correlation_tickers,low_correlation_tickers=get_correlation_data()
+    correlation_return(high_correlation_tickers,med_correlation_tickers,low_correlation_tickers)
+
+    print("Below is the list of high risk adjusted return i.e sharpe ratio,medium return and low return stocks recommendation")
+    #check the risk_return_analysis file to get (get_sharpe_data)
+    high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers=get_sharpe_data()
+    sharpe_return(high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers)
+
+      
 
 
 # Ask user how much money they want to invest
@@ -178,8 +200,3 @@ risk_defined = {
     5: "Conservative",
 }
 """
-# Returns the Investor Risk Profile
-def risk_mapping(risk_score):
-    for key, risk_profile in risk_defined.items():
-        if risk_score >= key:
-            return risk_profile
