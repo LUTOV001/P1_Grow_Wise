@@ -15,7 +15,7 @@
 ### The following list includes the main technologies and tools using during the preparation and deployment of the solution:
 ### 1. *Python* - Programming language used to code the solution. Version 3.7.13 was used
 ### 2. *GitHub* - Reposotory for code deployment, version management and documentation of the presented solution
-### 3. *Jupyter Labs* - IDE tool for coding, code testing/debugging and solution documentation. Version V3.4.4 was used
+### 3. *VS Code* - IDE tool for coding, code testing/debugging and solution documentation. Version V1.7.82 was used
 ### 4. *Git Bash console* - Local console used to test the coded solution and sync with GitHub. Version 2.40.1.windows.1 was utilized for this challenge
 ### 5. *Slack* - Collaboration tool to communicate and brainstorm with other FinTech Bootcamp participants
 ### 6. *Operative System* - This solution was prepared in a PC running Windows 11 v H22
