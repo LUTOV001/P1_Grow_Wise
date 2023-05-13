@@ -3,6 +3,14 @@
 ## **FinTech Butlers**
 ## **Introduction**
 
+## Background on Data Selection
+In developing the initial Minimally Viable Product (MVP), our intention was to develop a mock Technology Sector exchange traded fund (ETF) to test our model.  An exchange traded fund, or ETF, is a basket of investments like stocks or bonds. By making an assessment of a user’s risk profile and investment experience, we were experimenting if our risk criterion would allow us to construct a portfolio that could outperform the S&P 500.  We recognize that the current economic cycle does not, generally, encourage a buy-hold strategy in the technology sector.  Another consideration is that given the portfolio performance and economic cycle, there may be other investment strategies to explore. 
+
+   ETF's 
+   Sector ETFs > Tech ETFs
+   The U.S. stock market is divided into 11 sectors, and each is made up of companies that operate within that sector. Exchange traded funds let you invest in lots of securities all at once.  Sector ETFs provide a way to invest in specific companies within those sectors, such as the health care, financial or industrial sectors. These can be especially useful to investors tracking business cycles, as some sectors tend to perform better during expansion periods, others better during contraction periods.Tech ETFs include companies that create and distribute hardware, such as computers, smartphones, semiconductors and other electronics, and software, such as artificial intelligence, cybersecurity and cloud technology.
+   
+   
 ### x Include wording from proposal doc
 ### x Include user stories
 ### x Explain modules below
