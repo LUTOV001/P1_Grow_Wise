@@ -1,15 +1,13 @@
 
 import questionary
-
-# Maps the summed value of the responses to one of the five investor risk profiles (CHANGE to THREE)
-risk_defined = {
-    45: "Aggressive",
-    25: "Moderate",
-    5: "Conservative",
-    }
+#Importing other modular programming files to create link between codes.
+from Risk_Return_Analysis import *
+from grow_wise_monte_carlo import *   
 
 # Define the questions and list of answers with corresponding numbers
-questions = [
+# Use questionary to prompt the user for their answers
+def call_question():
+    questions = [
     {
         "type": "select",
         "name": "investment_objective",
@@ -130,41 +128,59 @@ questions = [
             {"name":"Very high (Significantly above market returns)", "value": 5}
         ]
     },
-]
-
-# Use questionary to prompt the user for their answers
-def risk_questions():
+    ]
     answers = questionary.prompt(questions)
-    # Sum the values of the user's responses
+
+# Sum the values of the user's responses
     risk_score = 0
     for answer in answers.values():
         if isinstance(answer, int):
             risk_score += answer
         else:
             risk_score += answer.get("value")
+
+    # Print the total score
     print(f"Your risk score is: {risk_score}")
-    return True
+    return your_risk_score(risk_score)
 
-def risk_mapping():
-    risk_score = 10
-    for key, risk_profile in risk_defined.items():
-    # for risk_profile in risk_defined.items():
-    #     return risk_profile
-        if risk_score >= key:
-            print(f'Your risk profile is {risk_profile}')
-            return risk_profile
-
-# print((f"Your risk score is: {risk_score}"))
-   
-
-# Print the total score
-# print(f"Your risk score is: {risk_score}")
-
-# Returns the Investor Risk Profile
+def your_risk_score(risk_score):
+    #Diversifying portfolio on the basis of risk score # Risk_Return_Analysis.portfolio_recommandation
+    if risk_score<=16:
+        print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
+        low_risk_port_rec = portfolio_recommandation(risk_score)
+        print(low_risk_port_rec)
 
 
-##################### FUTURE FEATURE ##############################
-############ AS OF 20230511, USING SET AMOUNT OF $100K ############
+    elif risk_score >=17 and risk_score <32:
+        print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
+        moderate_risk_port_rec = portfolio_recommandation(risk_score)
+        print(moderate_risk_port_rec)
+
+    elif risk_score >=32:
+        print("Based on your above risk score your profile is Aggressive. Below are the list of recommended stocks ")
+        high_risk_port_rec = portfolio_recommandation(risk_score)
+        print(high_risk_port_rec)
+
+    
+    #MOVED to prints_beta_core_sharpe.py
+    print("Below is the list of high beta,medium beta and low beta stocks recommendation")
+    #check the risk_return_analysis file to get (get_beta_data)
+    high_beta,med_beta,low_beta=get_beta_data()
+    beta_return(high_beta,med_beta,low_beta)
+
+    print("Below is the list of highly correlated,medium correlated and low correlated stocks recommendation")
+    #check the risk_return_analysis file to get (get_correlation_data)
+    high_correlation_tickers,med_correlation_tickers,low_correlation_tickers=get_correlation_data()
+    correlation_return(high_correlation_tickers,med_correlation_tickers,low_correlation_tickers)
+
+    print("Below is the list of high risk adjusted return i.e sharpe ratio,medium return and low return stocks recommendation")
+    #check the risk_return_analysis file to get (get_sharpe_data)
+    high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers=get_sharpe_data()
+    sharpe_return(high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers)
+
+      
+
+
 # Ask user how much money they want to invest
 # Verify the amount is an integer
 
@@ -174,11 +190,19 @@ def risk_mapping():
 #         return True
 #     except ValueError:
 #         return False
-
+# """"
 # investment_amount = questionary.text(
 #     "How much do you want to invest?",
 #     validate=is_number
 # ).ask()
 
 # print("You would like to invest: $", investment_amount)
-#####################################################################
+
+
+# # Maps the summed value of the responses to one of the five investor risk profiles (CHANGE to THREE)
+# risk_defined = {
+#     45: "Aggressive",
+#     25: "Moderate",
+#     5: "Conservative",
+# }
+# """
