@@ -11,8 +11,8 @@ import warnings
 warnings.filterwarnings('ignore')
 from Resources.ticker_list import ticker_list
 from utilities.grab_current_date import *
-from spy_data import *
-from tickers_calculations import *
+import spy_data
+import tickers_calculations 
 
 
 # ### SPY
@@ -49,6 +49,16 @@ from tickers_calculations import *
 # # annualized_sharpe_SPY500
 
 # ### 50 tech stocks
+
+# import yfinance as yf
+# from utilities.grab_current_date import *
+# import numpy as np
+# import pandas as pd                     
+# from yahoo_fin.stock_info import get_data
+# from Resources.ticker_list import ticker_list
+
+# print(daily_returns_50_tickers())
+# print(calculate_50_tickers())
 # tickers = ticker_list() # List of 50 stocks/tickers
 # # Calculates Daily return of all 50 stocks and Cleans the data by dropping nan.
 # daily_returns={}
@@ -95,7 +105,8 @@ from tickers_calculations import *
 # # annualized_sharpe_sorted
 # # type(annualized_sharpe_sorted)
 
-
+daily_return_df, cumulative_returns, std_of_ticker_sorted, annualized_standard_deviation, annualized_average_return, annualized_sharpe_sorted = tickers_calculations.calculate_50_tickers()
+spy_cumulative_returns, std_of_SPY500, annualized_standard_deviation_SPY500, annualized_average_return_SPY500 , annualized_sharpe_SPY500 = spy_data.spy_calculations()
 # Optimization 
 
 rank_risk_Return={}
@@ -115,14 +126,14 @@ for i in range(32, 51):
 #print(rank_risk_Return)
 
 # add rank number to the index of std_devs series
-ranked_std_dev = calculate_50_tickers(std_of_ticker_sorted).rank(ascending=False) 
+ranked_std_dev = std_of_ticker_sorted.rank(ascending=False) 
 #print(ranked_std_dev)
 
 # create a DataFrame from the ranked_std_dev series
 std_dev_df = pd.DataFrame(ranked_std_dev, columns=['Rank'])
 #print(std_dev_df)
 # add the corresponding ticker symbols to the DataFrame
-std_dev_df['Ticker'] = calculate_50_tickers(std_of_ticker_sorted).index
+std_dev_df['Ticker'] = std_of_ticker_sorted.index
 #print(std_dev_df)
 # set the ticker column as the index
 std_dev_df.set_index('Ticker', inplace=True)

@@ -17,7 +17,7 @@ def daily_returns_SPY500():
     #print(daily_returns_SPY500)
     return(daily_returns_SPY500)
 
-def spy_calculations(spy_cumulative_returns, std_of_SPY500, annualized_standard_deviation_SPY500, annualized_average_return_SPY500 , annualized_sharpe_SPY500):
+def spy_calculations():
     #Calculates Cumulative Returns bu using daily return series.
     spy_cumulative_returns=(1+daily_returns_SPY500).cumprod()-1
     # cumulative_returns.head() # prints

@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd                     
 from yahoo_fin.stock_info import get_data
 from Resources.ticker_list import ticker_list
-
+# tickers_calculations
 
 ### 50 tech stocks
 #50 tickers pulled from yfinance.
@@ -21,7 +21,7 @@ def daily_returns_50_tickers():
         #print(daily_returns)
     return daily_returns
 
-def calculate_50_tickers(daily_return_df, cumulative_returns, std_of_ticker_sorted, annualized_standard_deviation, annualized_average_return, annualized_sharpe_sorted):
+def calculate_50_tickers():
     # Creates a dataframe of daily return on tickers.
     daily_return_df=pd.DataFrame(daily_returns_50_tickers())
 
