@@ -37,7 +37,7 @@ def register():
         return
     new_user_password=(input("choose your Password:"))
     append_csv(new_user_name,new_user_password)
-    call_question()
+    login()
     
     
       
