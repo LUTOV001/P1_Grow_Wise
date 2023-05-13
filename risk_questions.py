@@ -3,6 +3,7 @@ import questionary
 #Importing other modular programming files to create link between codes.
 from Risk_Return_Analysis import *
 from grow_wise_monte_carlo import *   
+from beta_corr_sharpe import *
 
 # Define the questions and list of answers with corresponding numbers
 # Use questionary to prompt the user for their answers
@@ -165,21 +166,21 @@ def your_risk_score(risk_score):
         return(high_risk_port_rec)
 
     
-    #MOVED to prints_beta_core_sharpe.py
-    print("Below is the list of high beta,medium beta and low beta stocks recommendation")
-    #check the risk_return_analysis file to get (get_beta_data)
-    high_beta,med_beta,low_beta=get_beta_data()
-    beta_return(high_beta,med_beta,low_beta)
+    # #MOVED to prints_beta_core_sharpe.py
+    # print("Below is the list of high beta,medium beta and low beta stocks recommendation")
+    # #check the risk_return_analysis file to get (get_beta_data)
+    # high_beta,med_beta,low_beta=get_beta_data()
+    # beta_return(high_beta,med_beta,low_beta)
 
-    print("Below is the list of highly correlated,medium correlated and low correlated stocks recommendation")
-    #check the risk_return_analysis file to get (get_correlation_data)
-    high_correlation_tickers,med_correlation_tickers,low_correlation_tickers=get_correlation_data()
-    correlation_return(high_correlation_tickers,med_correlation_tickers,low_correlation_tickers)
+    # print("Below is the list of highly correlated,medium correlated and low correlated stocks recommendation")
+    # #check the risk_return_analysis file to get (get_correlation_data)
+    # high_correlation_tickers,med_correlation_tickers,low_correlation_tickers=get_correlation_data()
+    # correlation_return(high_correlation_tickers,med_correlation_tickers,low_correlation_tickers)
 
-    print("Below is the list of high risk adjusted return i.e sharpe ratio,medium return and low return stocks recommendation")
-    #check the risk_return_analysis file to get (get_sharpe_data)
-    high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers=get_sharpe_data()
-    sharpe_return(high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers)
+    # print("Below is the list of high risk adjusted return i.e sharpe ratio,medium return and low return stocks recommendation")
+    # #check the risk_return_analysis file to get (get_sharpe_data)
+    # high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers=get_sharpe_data()
+    # sharpe_return(high_sharpe_tickers,med_sharpe_tickers,low_sharpe_tickers)
 
       
 
