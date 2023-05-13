@@ -26,7 +26,7 @@ def calculate_50_tickers():
     daily_return_df=pd.DataFrame(daily_returns_50_tickers())
 
     # Calculates Cumulative Returns bu using daily return dataframe.
-    cumulative_returns=(1+daily_return_df).cumprod()-1
+    cumulative_returns=(1 + daily_return_df).cumprod()-1
     # cumulative_returns.head()
 
     # Calculates and sorts the standard deviation for all 50 stocks.
@@ -34,8 +34,8 @@ def calculate_50_tickers():
     std_of_ticker_sorted=std_of_ticker.sort_values(ascending=False) # Sorts largest to smallest.
 
     # Calculate and sort the annualized standard deviation (252 trading days) of all 50 stocks.
-    annualized_standard_deviation = std_of_ticker* np.sqrt(252)
-    annualized_standard_deviation.sort_values(ascending=False, inplace=True)
+    annualized_standard_deviation = std_of_ticker*np.sqrt(252)
+    # annualized_standard_deviation.sort_values(ascending=False, inplace=True)
     # annualized_standard_deviation.sort_values(ascending=False).head() # Reviews the annualized std dev. sorted from highest to lowest.
 
     # Calculates the annual average return data for the for 50 tickers.
@@ -46,8 +46,9 @@ def calculate_50_tickers():
 
     # Calculates the annualized Sharpe Ratios for each of the 50 Stocks.
     #risk_free_rate=0 # tf is this?
-    annualized_sharpe = annualized_average_return / annualized_standard_deviation
-    annualized_sharpe_sorted=annualized_sharpe.sort_values(ascending=False, inplace=True) # Sharpe ratios sorted highest to lowest
+    annualized_sharpe_sorted = annualized_average_return / annualized_standard_deviation #DEBUG
+    # annualized_sharpe = annualized_average_return / annualized_standard_deviation
+    # annualized_sharpe_sorted = annualized_sharpe.sort_values(ascending=False, inplace=True) # Sharpe ratios sorted highest to lowest
     # annualized_sharpe_sorted
     # type(annualized_sharpe_sorted)
     return daily_return_df, cumulative_returns, std_of_ticker_sorted, annualized_standard_deviation, annualized_average_return, annualized_sharpe_sorted

@@ -19,11 +19,11 @@ def daily_returns_SPY500():
 
 def spy_calculations():
     #Calculates Cumulative Returns bu using daily return series.
-    spy_cumulative_returns=(1+daily_returns_SPY500).cumprod()-1
+    spy_cumulative_returns=(1 + daily_returns_SPY500()).cumprod()-1
     # cumulative_returns.head() # prints
 
     # Standard Deviation of S&P500.
-    std_of_SPY500=daily_returns_SPY500.std()
+    std_of_SPY500=daily_returns_SPY500().std()
     # std_of_SPY500 # prints
 
     # Annualized standard deviation (252 trading days) of S&P500.
@@ -32,10 +32,10 @@ def spy_calculations():
 
     # Calculates the annual average return data for the for S&P500 by 252 (the number of trading days in the year)
     trading_Days=252
-    annualized_average_return_SPY500=daily_returns_SPY500.mean()*trading_Days
+    annualized_average_return_SPY500=daily_returns_SPY500().mean()*trading_Days
 
     # Calculates Shape Ratio
-    risk_free_rate=0
+    # risk_free_rate=0
     annualized_sharpe_SPY500 = annualized_average_return_SPY500 / annualized_standard_deviation_SPY500
     # annualized_sharpe_SPY500
     return spy_cumulative_returns, std_of_SPY500, annualized_standard_deviation_SPY500, annualized_average_return_SPY500 , annualized_sharpe_SPY500
