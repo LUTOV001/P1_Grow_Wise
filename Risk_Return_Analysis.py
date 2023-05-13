@@ -14,127 +14,35 @@ from utilities.grab_current_date import *
 import spy_data
 import tickers_calculations 
 
-
-# ### SPY
-# #S&P500 data pulled from yfinance.
-# print('***Pulling S&P Data***')
-# data_spy = yf.download("SPY",start='2013-01-01', end=today_date())
-# # print(data_spy)
-
-# # Calculates the daily return for S&P500 on adjusted closing price by using percentage change.
-# daily_returns_SPY500={}
-# daily_returns_SPY500 = data_spy['Adj Close'].pct_change().dropna()
-# #print(daily_returns_SPY500)
-# daily_returns_SPY500.name='Adj Close'
-
-# #Calculates Cumulative Returns bu using daily return series.
-# cumulative_returns=(1+daily_returns_SPY500).cumprod()-1
-# # cumulative_returns.head() # prints
-
-# # Standard Deviation of S&P500.
-# std_of_SPY500=daily_returns_SPY500.std()
-# # std_of_SPY500 # prints
-
-# # Annualized standard deviation (252 trading days) of S&P500.
-# annualized_standard_deviation_SPY500 = std_of_SPY500* np.sqrt(252)
-# # annualized_standard_deviation_SPY500 # prints
-
-# # Calculates the annual average return data for the for S&P500 by 252 (the number of trading days in the year)
-# trading_Days=252
-# annualized_average_return_SPY500=daily_returns_SPY500.mean()*trading_Days
-
-# # Calculates Shape Ratio
-# risk_free_rate=0
-# annualized_sharpe_SPY500 = annualized_average_return_SPY500 / annualized_standard_deviation_SPY500
-# # annualized_sharpe_SPY500
-
-# ### 50 tech stocks
-
-# import yfinance as yf
-# from utilities.grab_current_date import *
-# import numpy as np
-# import pandas as pd                     
-# from yahoo_fin.stock_info import get_data
-# from Resources.ticker_list import ticker_list
-
-# print(daily_returns_50_tickers())
-# print(calculate_50_tickers())
-# tickers = ticker_list() # List of 50 stocks/tickers
-# # Calculates Daily return of all 50 stocks and Cleans the data by dropping nan.
-# daily_returns={}
-# print('***Calculating Daily returns of all 50 stocks***') # Cleans the data by dropping nan
-# for ticker in tickers:
-#     data = yf.download(ticker,start='2013-01-01', end=today_date())
-#     daily_return =data['Adj Close'].pct_change().dropna()
-#     daily_returns[ticker]=daily_return
-#     #print(daily_returns)
-# print('')
-
-# # Creates a dataframe of daily return on tickers.
-# daily_return_df=pd.DataFrame(daily_returns)
-
-# # Calculates Cumulative Returns bu using daily return dataframe.
-# cumulative_returns=(1+daily_return_df).cumprod()-1
-# # cumulative_returns.head()
-
-
-# # Calculates and sorts the standard deviation for all 50 stocks.
-# std_of_ticker=daily_return_df.std()
-# std_of_ticker_sorted=std_of_ticker.sort_values(ascending=False) # Sorts largest to smallest.
-# # std_of_ticker_sorted
-
-
-# # Calculate and sort the annualized standard deviation (252 trading days) of all 50 stocks.
-# annualized_standard_deviation = std_of_ticker* np.sqrt(252)
-# annualized_standard_deviation.sort_values(ascending=False)
-# # annualized_standard_deviation.sort_values(ascending=False).head() # Reviews the annualized std dev. sorted from highest to lowest.
-
-
-# # Calculates the annual average return data for the for 50 tickers.
-
-# trading_Days=252 # the number of trading days in the year
-# annualized_average_return=daily_return_df.mean()*trading_Days
-# annualized_average_return.sort_values(ascending=False)
-# # annualized_average_return.sort_values(ascending=False).head() # Reviews the annual average returns sorted from highest to lowest.
-
-
-# # Calculates the annualized Sharpe Ratios for each of the 50 Stocks.
-# risk_free_rate=0
-# annualized_sharpe = annualized_average_return / annualized_standard_deviation
-# annualized_sharpe_sorted=annualized_sharpe.sort_values(ascending=False) # Sharpe ratios sorted highest to lowest
-# # annualized_sharpe_sorted
-# # type(annualized_sharpe_sorted)
-
+# 50 tickers
 daily_return_df, cumulative_returns, std_of_ticker_sorted, annualized_standard_deviation, annualized_average_return, annualized_sharpe_sorted = tickers_calculations.calculate_50_tickers()
+daily_returns = tickers_calculations.daily_returns_50_tickers()
+
+# SPY
 spy_cumulative_returns, std_of_SPY500, annualized_standard_deviation_SPY500, annualized_average_return_SPY500 , annualized_sharpe_SPY500 = spy_data.spy_calculations()
+daily_returns_SPY500 = spy_data.daily_returns_SPY500()
 # Optimization 
 
 rank_risk_Return={}
-
 # Top 10%
 for i in range(1, 16):
     rank_risk_Return[i] = 'High Volatility'
-
 # Middle 20%
 for i in range(16, 32):
     rank_risk_Return[i] = 'Medium Volatility'
-
 # Bottom 20%
 for i in range(32, 51):
     rank_risk_Return[i] = 'Low Volatility'
 
-#print(rank_risk_Return)
-
 # add rank number to the index of std_devs series
 ranked_std_dev = std_of_ticker_sorted.rank(ascending=False) 
-#print(ranked_std_dev)
 
 # create a DataFrame from the ranked_std_dev series
 std_dev_df = pd.DataFrame(ranked_std_dev, columns=['Rank'])
-#print(std_dev_df)
+
 # add the corresponding ticker symbols to the DataFrame
 std_dev_df['Ticker'] = std_of_ticker_sorted.index
-#print(std_dev_df)
+
 # set the ticker column as the index
 std_dev_df.set_index('Ticker', inplace=True)
 
@@ -143,7 +51,6 @@ std_dev_df['Group'] = ranked_std_dev.apply(lambda x: rank_risk_Return.get(x, 'Un
 
 # sort the std_devs_df DataFrame based on rank
 #std_dev_df.sort_values(by=['Rank'], inplace=True)
-#std_dev_df
 
 ### GROUPING ###
 
@@ -168,21 +75,15 @@ print('')
 
 
 Sharpe_rank_risk_Return={}
-
 # Top 10%
 for i in range(1, 16):
     Sharpe_rank_risk_Return[i] = 'High Return'
-
 # Middle 20%
 for i in range(16, 32):
     Sharpe_rank_risk_Return[i] = 'Medium Return'
-
 # Bottom 20%
 for i in range(32, 51):
     Sharpe_rank_risk_Return[i] = 'Low Return'
-    
-
-#print(rank_risk_Return)
 
 # add rank number to the index of sharpe_ratio series
 ranked_sharpe_ratio = annualized_sharpe_sorted.rank(ascending=False) 
@@ -203,10 +104,7 @@ sharpe_ratio_df['Group'] = ranked_sharpe_ratio.apply(lambda x: Sharpe_rank_risk_
 # sort the sharpe_ratio_df DataFrame based on rank
 sharpe_ratio_df.sort_values(by=['Rank'], inplace=True)
 
-#Print the top 10 High return stock based on sharpe ratio.
-# sharpe_ratio_df
-
-# create a dictionary to store the ranked tickers
+# creates a dictionary to store the ranked tickers
 ranked_tickers_sharpe = {
     "Group 1": list(ranked_sharpe_ratio[ranked_sharpe_ratio <= 15].index),
     "Group 2": list(ranked_sharpe_ratio[(ranked_sharpe_ratio > 15) & (ranked_sharpe_ratio <= 31)].index),
@@ -225,9 +123,9 @@ print('')
 # Group 2 has medium return, 
 # and Group 3 has the lowest return.
 
-# Calculation Covariance of all 50 stocks to compare it with variance of s&p500.
+# Calculates Covariance of all 50 stocks to compare it with variance of s&p500.
 covariance_50stocks={}
-for ticker in tickers:
+for ticker in ticker_list():
     covariance_each_stock_with_SPY500= daily_return_df[ticker].cov(daily_returns_SPY500)
     covariance_50stocks[ticker]=covariance_each_stock_with_SPY500
 
@@ -246,7 +144,7 @@ sp500_Var=daily_returns_SPY500.var()
 
 #Calculate Correlation between each ticker with s&p500.
 correlation_50stocks={}
-for ticker in tickers:
+for ticker in ticker_list():
     correlation_each_stock_with_SPY500= daily_return_df[ticker].corr(daily_returns_SPY500)
     correlation_50stocks[ticker]=correlation_each_stock_with_SPY500
 

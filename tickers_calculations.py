@@ -29,26 +29,20 @@ def calculate_50_tickers():
     cumulative_returns=(1+daily_return_df).cumprod()-1
     # cumulative_returns.head()
 
-
     # Calculates and sorts the standard deviation for all 50 stocks.
     std_of_ticker=daily_return_df.std()
     std_of_ticker_sorted=std_of_ticker.sort_values(ascending=False) # Sorts largest to smallest.
-    # std_of_ticker_sorted
-
 
     # Calculate and sort the annualized standard deviation (252 trading days) of all 50 stocks.
     annualized_standard_deviation = std_of_ticker* np.sqrt(252)
     annualized_standard_deviation.sort_values(ascending=False, inplace=True)
     # annualized_standard_deviation.sort_values(ascending=False).head() # Reviews the annualized std dev. sorted from highest to lowest.
 
-
     # Calculates the annual average return data for the for 50 tickers.
-
     trading_Days=252 # the number of trading days in the year
     annualized_average_return=daily_return_df.mean()*trading_Days
     annualized_average_return.sort_values(ascending=False, inplace=True)
     # annualized_average_return.sort_values(ascending=False).head() # Reviews the annual average returns sorted from highest to lowest.
-
 
     # Calculates the annualized Sharpe Ratios for each of the 50 Stocks.
     #risk_free_rate=0 # tf is this?
