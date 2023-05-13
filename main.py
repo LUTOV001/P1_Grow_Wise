@@ -22,7 +22,8 @@ def login():
         print("login successful")
         call_question()
     else:
-        print("login unsuccessful")     
+        print("login unsuccessful")
+        login()     
 
 #New User First Time Register\signup.
 def register():
@@ -33,6 +34,7 @@ def register():
         return
     new_user_password=(input("choose your Password:"))
     append_csv(new_user_name,new_user_password)
+    call_question()
     
     
       
@@ -40,6 +42,7 @@ def run():
     #will ask question about new user or existing user
     #if new user call register else call login 
     existing_user = input("Are you an existing user? Please enter Y/N")
+    existing_user = existing_user.upper() # fixes case errors
     if existing_user == 'Y':
         login()
     elif existing_user =='N':

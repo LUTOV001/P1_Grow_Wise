@@ -30,6 +30,7 @@ tickers = ["AAPL", "GOOGL", "AMZN", "META","TSM","MSFT", "TSLA", "NVDA", "PYPL",
 
 
 # S&P500 data pulled from yfinance.
+print('***Pulling S&P Data***')
 data_spy = yf.download("SPY",start='2013-01-01', end='2023-05-09')
 #print(data_spy)
 
@@ -50,7 +51,7 @@ daily_returns_SPY500.name='Adj Close'
 
 #Calculate Cumulative Returns bu using daily return series.
 cumulative_returns=(1+daily_returns_SPY500).cumprod()-1
-cumulative_returns.head()
+# cumulative_returns.head() # prints
 
 
 # In[7]:
@@ -60,7 +61,7 @@ cumulative_returns.head()
 
 std_of_SPY500=daily_returns_SPY500.std()
 
-std_of_SPY500
+# std_of_SPY500 # prints
 
 
 # In[8]:
@@ -69,7 +70,7 @@ std_of_SPY500
 # Calculate the annualized standard deviation (252 trading days) of S&P500.
 
 annualized_standard_deviation_SPY500 = std_of_SPY500* np.sqrt(252)
-annualized_standard_deviation_SPY500
+# annualized_standard_deviation_SPY500 # prints
 
 
 # In[9]:
@@ -82,7 +83,7 @@ annualized_standard_deviation_SPY500
 trading_Days=252
 annualized_average_return_SPY500=daily_returns_SPY500.mean()*trading_Days
 
-annualized_average_return_SPY500
+# annualized_average_return_SPY500
 #annualized_average_return.sort_values(ascending=False)
 
 
@@ -92,7 +93,7 @@ annualized_average_return_SPY500
 # Calculate the annualized Sharpe Ratios for S&P500.
 risk_free_rate=0
 annualized_sharpe_SPY500 = annualized_average_return_SPY500 / annualized_standard_deviation_SPY500
-annualized_sharpe_SPY500
+# annualized_sharpe_SPY500
 
 
 # In[11]:
@@ -100,11 +101,13 @@ annualized_sharpe_SPY500
 
 #Calculate Daily return of all 50 stocks and Clean the data by dropping nan.
 daily_returns={}
+print('***Calculating Daily returns of all 50 stocks***') # Cleans the data by dropping nan
 for ticker in tickers:
     data = yf.download(ticker,start='2013-01-01', end='2023-05-08')
     daily_return =data['Adj Close'].pct_change().dropna()
     daily_returns[ticker]=daily_return
     #print(daily_returns)
+print('')
 
 
 # In[12]:
@@ -119,7 +122,7 @@ daily_return_df=pd.DataFrame(daily_returns)
 
 #Calculate Cumulative Returns bu using daily return dataframe.
 cumulative_returns=(1+daily_return_df).cumprod()-1
-cumulative_returns.head()
+# cumulative_returns.head()
 
 
 # In[14]:
@@ -215,7 +218,7 @@ std_dev_df['Group'] = ranked_std_dev.apply(lambda x: rank_risk_Return.get(x, 'Un
 
 
 # In[19]:
-
+### GROUPING ###
 
 # create a dictionary to store the ranked tickers
 ranked_tickers_std = {
@@ -223,8 +226,11 @@ ranked_tickers_std = {
     "Group 2": list(ranked_std_dev[(ranked_std_dev > 15) & (ranked_std_dev <= 31)].index),
     "Group 3": list(ranked_std_dev[ranked_std_dev > 31].index),
 }
-
-print(ranked_tickers_std)
+print('\n***Grouping Tickers by Beta***\n')
+for item in ranked_tickers_std.items():
+    print(f'{item}')
+print('')
+# print(ranked_tickers_std)
 
 # This will output a dictionary with three keys, "Group 1", "Group 2", and "Group 3", 
 # with the respective tickers for each group. 
@@ -276,7 +282,7 @@ sharpe_ratio_df['Group'] = ranked_sharpe_ratio.apply(lambda x: Sharpe_rank_risk_
 sharpe_ratio_df.sort_values(by=['Rank'], inplace=True)
 
 #Print the top 10 High return stock based on sharpe ratio.
-sharpe_ratio_df
+# sharpe_ratio_df
 
 
 # In[21]:
@@ -288,8 +294,11 @@ ranked_tickers_sharpe = {
     "Group 2": list(ranked_sharpe_ratio[(ranked_sharpe_ratio > 15) & (ranked_sharpe_ratio <= 31)].index),
     "Group 3": list(ranked_sharpe_ratio[ranked_sharpe_ratio > 31].index),
 }
-
-print(ranked_tickers_sharpe)
+print('\n***Ranking Tickers by Sharpe Ratio***\n')
+for item in ranked_tickers_sharpe.items():
+    print(f'{item}')
+print('')
+# print(ranked_tickers_sharpe)
 
 # This will output a dictionary with three keys, "Group 1", "Group 2", and "Group 3", 
 # with the respective tickers for each group. 
@@ -309,7 +318,7 @@ for ticker in tickers:
     covariance_each_stock_with_SPY500= daily_return_df[ticker].cov(daily_returns_SPY500)
     covariance_50stocks[ticker]=covariance_each_stock_with_SPY500
 
-print(covariance_50stocks)
+# print(covariance_50stocks)
 
 
 # In[23]:
@@ -319,7 +328,7 @@ print(covariance_50stocks)
 #pd.DataFrame(covariance_50stocks)
 df_final = pd.DataFrame(covariance_50stocks.items())
 df_final.columns = ['Ticker','Covariance']
-df_final.head()
+# df_final.head()
 
 
 # In[24]:
@@ -328,7 +337,7 @@ df_final.head()
 #Calculate the variance of S&P500.
 
 sp500_Var=daily_returns_SPY500.var()
-sp500_Var
+# sp500_Var
 
 
 # In[25]:
@@ -342,7 +351,7 @@ for ticker in tickers:
     correlation_each_stock_with_SPY500= daily_return_df[ticker].corr(daily_returns_SPY500)
     correlation_50stocks[ticker]=correlation_each_stock_with_SPY500
 
-correlation_50stocks
+# correlation_50stocks
 
 
 # In[26]:
@@ -354,7 +363,7 @@ correlation_50stocks
 df_final['Beta'] = df_final['Covariance']/sp500_Var
 df_final['Correlation']=correlation_50stocks.values()
 
-df_final.head()
+# df_final.head()
 
 
 # In[27]:
@@ -366,7 +375,7 @@ df_final_sorted_by_beta=df_final.sort_values(by=['Beta'],ascending=False)
 
 # ranking them in descending order of beta.
 df_final_sorted_by_beta['Rank'] = df_final_sorted_by_beta['Beta'].rank(ascending=False) 
-print(df_final_sorted_by_beta.head())
+# print(df_final_sorted_by_beta.head()) ### DEBUG
 
 
 # In[28]:
@@ -388,7 +397,7 @@ df_final_sorted_by_beta.loc[df_final_sorted_by_beta['Rank']>=32,'sensitivity']='
 
 #Sorted the dataframe and rank them by beta.
 
-df_final_sorted_by_beta.tail(20)
+# df_final_sorted_by_beta.tail(20) ### DEBUG
 
 
 # In[30]:
@@ -400,7 +409,7 @@ df_final_sorted_by_Correlation=df_final.sort_values(by=['Correlation'],ascending
 
 # ranking them in descending order of Correlation.
 df_final_sorted_by_Correlation['Rank'] = df_final_sorted_by_Correlation['Correlation'].rank(ascending=False) 
-print(df_final_sorted_by_Correlation.head(10))
+# print(df_final_sorted_by_Correlation.head(10)) ### DEBUG
 
 
 # In[31]:
@@ -417,7 +426,7 @@ df_final_sorted_by_Correlation['Correlation Type'] = ''
 df_final_sorted_by_Correlation.loc[df_final_sorted_by_Correlation['Rank']<16,'Correlation Type'] = 'Highly Correlated'
 df_final_sorted_by_Correlation.loc[(df_final_sorted_by_Correlation['Rank']>=16)&(df_final_sorted_by_Correlation['Rank']<32),'Correlation Type'] = 'Moderatly Correlated'
 df_final_sorted_by_Correlation.loc[df_final_sorted_by_Correlation['Rank']>=32,'Correlation Type']='Less Correlated'
-df_final_sorted_by_Correlation
+# df_final_sorted_by_Correlation ### DEBUG 
 
 
 # In[32]:

@@ -153,7 +153,7 @@ def call_question():
         print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
         print(portfolio_recommandation(risk_score))
     elif risk_score >=32:
-        print("Based on your above risk score your profile is Agressive. Below are the list of recommended stocks ")
+        print("Based on your above risk score your profile is Aggressive. Below are the list of recommended stocks ")
         print(portfolio_recommandation(risk_score))
 
 
