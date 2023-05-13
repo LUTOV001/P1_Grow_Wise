@@ -12,6 +12,7 @@ import warnings
 warnings.filterwarnings('ignore')
 from Resources.ticker_list import ticker_list
 from utilities.grab_current_date import *
+import hvplot
 # from risk_questions import call_question
 
 # requires python 3.9 min
@@ -59,7 +60,8 @@ daily_returns
 prices_df = pd.concat([prices_df, daily_returns], axis=1, join="inner")
 
 # display resulting DataFrame
-prices_df
+plot_prices_df = prices_df.plot
+hvplot.show(plot_prices_df)
 
 
 # In[7]:

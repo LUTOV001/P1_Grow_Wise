@@ -144,14 +144,13 @@ def call_question():
     print(f"Your risk score is: {risk_score}")
     return your_risk_score(risk_score)
 
-def your_risk_score(risk_score):
+def your_risk_score(risk_score): # runs after questionnaire
     #Diversifying portfolio on the basis of risk score # Risk_Return_Analysis.portfolio_recommandation
     if risk_score<=16:
         print("Based on your above risk score your profile is Conservative. Below are the list of recommended stocks ")
         low_risk_port_rec = portfolio_recommandation(risk_score)
         print(low_risk_port_rec)
         return(low_risk_port_rec)
-
 
     elif risk_score >=17 and risk_score <32:
         print("Based on your above risk score your profile is Moderate. Below are the list of recommended stocks ")
@@ -166,7 +165,7 @@ def your_risk_score(risk_score):
         return(high_risk_port_rec)
 
     
-    # #MOVED to prints_beta_core_sharpe.py
+    # #MOVED to beta_corr_sharpe.py
     # print("Below is the list of high beta,medium beta and low beta stocks recommendation")
     # #check the risk_return_analysis file to get (get_beta_data)
     # high_beta,med_beta,low_beta=get_beta_data()
